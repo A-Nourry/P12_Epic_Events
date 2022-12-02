@@ -3,8 +3,8 @@ from django.contrib.auth import get_user_model
 
 UserModel = get_user_model()
 
-ADMIN_ID = "admin"
-ADMIN_PASSWORD = "admin"
+ADMIN_ID = "admine"
+ADMIN_PASSWORD = "admine"
 
 
 class Command(BaseCommand):
@@ -14,8 +14,8 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         self.stdout.write(self.style.MIGRATE_HEADING(self.help))
 
-        UserModel.objects.create_superuser(
-            ADMIN_ID, "admin@dev.com", ADMIN_PASSWORD
+        UserModel.objects.create_user(
+            ADMIN_ID, "PH", "admin", "PH", "PH", "PH", ADMIN_PASSWORD
         )
 
         self.stdout.write(self.style.SUCCESS("All Done !"))
