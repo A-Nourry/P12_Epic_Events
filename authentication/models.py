@@ -50,7 +50,7 @@ class MyAccountManager(BaseUserManager):
             return user
 
 
-class User(AbstractBaseUser):
+class Employee(AbstractBaseUser):
     TEAM_CHOICES = (
         ("MANAGEMENT", "Gestion"),
         ("SALES", "Ventes"),
@@ -71,10 +71,10 @@ class User(AbstractBaseUser):
         verbose_name="équipe",
     )
 
-    is_admin = models.BooleanField(default=False)
+    is_admin = models.BooleanField(default=True)
     is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False)
-    is_superuser = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=True)
+    is_superuser = models.BooleanField(default=True)
 
     USERNAME_FIELD = "email"
     objects = MyAccountManager()

@@ -1,15 +1,15 @@
 from rest_framework.serializers import ModelSerializer, CharField
 from rest_framework.validators import ValidationError
-from .models import User
+from .models import Employee
 
 
-class UserSerializer(ModelSerializer):
+class EmployeeSerializer(ModelSerializer):
 
     password = CharField(write_only=True)
 
     def validate(self, attrs):
 
-        email_exists = User.objects.filter(email=attrs["email"]).exists()
+        email_exists = Employee.objects.filter(email=attrs["email"]).exists()
 
         if email_exists:
             raise ValidationError("Cette adresse email est déjà utilisé !")
@@ -18,7 +18,7 @@ class UserSerializer(ModelSerializer):
 
     def create(self, validated_data):
 
-        user = User.objects.create_user(
+        user = Employee.objects.create_user(
             first_name=validated_data["first_name"],
             last_name=validated_data["last_name"],
             password=validated_data["password"],
@@ -33,7 +33,7 @@ class UserSerializer(ModelSerializer):
         return user
 
     class Meta:
-        model = User
+        model = Employee
         # Tuple of serialized model fields (see link [2])
         fields = [
             "id",

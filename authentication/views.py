@@ -1,19 +1,19 @@
 from rest_framework.viewsets import ModelViewSet
 
-from .models import User
-from .serializers import UserSerializer
+from .models import Employee
+from .serializers import EmployeeSerializer
 
 
-class UserViewset(ModelViewSet):
+class EmployeeViewset(ModelViewSet):
 
-    serializer_class = UserSerializer
+    serializer_class = EmployeeSerializer
 
     def get_queryset(self):
-        return User.objects.all()
+        return Employee.objects.all()
 
 
 class SignupViewset(ModelViewSet):
-    serializer_class = UserSerializer
+    serializer_class = EmployeeSerializer
 
     def get_queryset(self):
         return []
