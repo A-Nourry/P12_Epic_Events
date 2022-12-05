@@ -29,3 +29,19 @@ class Client(models.Model):
 
     def __str__(self):
         return f"{self.last_name} {self.first_name}"
+
+
+class Contract(models.Model):
+    sales_contact = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+        verbose_name="Vendeur(se)",
+    )
+    client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name="Client")
+    date_created = models.DateField(auto_now_add=True, verbose_name="Date de création")
+    date_updated = models.DateField(auto_now=True, verbose_name="Date de modification")
+    status = models.BooleanField(default=False, verbose_name="Contrat signé")
+    amount = models.FloatField(verbose_name="Montant en euros")
+    payement_due = models.DateField(verbose_name="Échéance du paiement")
