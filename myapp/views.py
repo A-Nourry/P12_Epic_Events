@@ -1,8 +1,8 @@
 from rest_framework.viewsets import ModelViewSet
 
 
-from .models import Client
-from .serializers import ClientSerializer
+from .models import Client, Contract
+from .serializers import ClientSerializer, ContractSerializer
 
 
 class ClientViewset(ModelViewSet):
@@ -10,3 +10,10 @@ class ClientViewset(ModelViewSet):
 
     def get_queryset(self):
         return Client.objects.all()
+
+
+class ContractViewset(ModelViewSet):
+    serializer_class = ContractSerializer
+
+    def get_queryset(self):
+        return Contract.objects.all()
