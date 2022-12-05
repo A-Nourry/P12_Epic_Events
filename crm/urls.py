@@ -19,13 +19,14 @@ from rest_framework import routers
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from authentication.views import SignupViewset, EmployeeViewset
-from myapp.views import ClientViewset, ContractViewset
+from myapp.views import ClientViewset, ContractViewset, EventViewset
 
 router = routers.SimpleRouter()
 router.register("signup", SignupViewset, basename="signup")
 router.register("employee", EmployeeViewset, basename="employee")
 router.register("client", ClientViewset, basename="client")
 router.register("contract", ContractViewset, basename="contract")
+router.register("event", EventViewset, basename="event")
 
 urlpatterns = [
     path("admin/", admin.site.urls),
