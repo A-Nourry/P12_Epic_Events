@@ -1,8 +1,8 @@
 from rest_framework.viewsets import ModelViewSet
 
 
-from .models import Client, Contract
-from .serializers import ClientSerializer, ContractSerializer
+from .models import Client, Contract, Event
+from .serializers import ClientSerializer, ContractSerializer, EventSerializer
 
 
 class ClientViewset(ModelViewSet):
@@ -17,3 +17,10 @@ class ContractViewset(ModelViewSet):
 
     def get_queryset(self):
         return Contract.objects.all()
+
+
+class EventViewset(ModelViewSet):
+    serializer_class = EventSerializer
+
+    def get_queryset(self):
+        return Event.objects.all()
