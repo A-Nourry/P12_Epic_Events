@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Client
+from .models import Client, Contract
 
 
 class ClientAdmin(admin.ModelAdmin):
@@ -16,4 +16,18 @@ class ClientAdmin(admin.ModelAdmin):
     )
 
 
+class ContractAdmin(admin.ModelAdmin):
+
+    list_display = (
+        "id",
+        "client",
+        "sales_contact",
+        "status",
+        "date_created",
+        "date_updated",
+        "amount",
+    )
+
+
 admin.site.register(Client, ClientAdmin)
+admin.site.register(Contract, ContractAdmin)
