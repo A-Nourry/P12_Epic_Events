@@ -3,6 +3,12 @@ from django.conf import settings
 
 
 class Client(models.Model):
+
+    TYPE_CHOICES = (
+        ("POTENTIAL_CLIENT", "Client potentiel"),
+        ("EXISTING_CLIENT", "Client existant"),
+    )
+
     first_name = models.CharField(max_length=25, verbose_name="Prénom")
     last_name = models.CharField(max_length=25, verbose_name="Nom")
     email = models.EmailField(
@@ -25,6 +31,9 @@ class Client(models.Model):
         blank=True,
         null=True,
         verbose_name="Vendeur(se)",
+    )
+    type = models.CharField(
+        max_length=20, choices=TYPE_CHOICES, verbose_name="Type de client"
     )
 
     def __str__(self):
@@ -63,7 +72,7 @@ class Event(models.Model):
         on_delete=models.SET_NULL,
         blank=True,
         null=True,
-        verbose_name="Responsable",
+        verbose_name="Responsable de l'évènement",
     )
     event_status = models.CharField(
         max_length=20, choices=EVENT_CHOICES, verbose_name="Statut de l'évènement"
