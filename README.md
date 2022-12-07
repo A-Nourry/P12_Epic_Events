@@ -15,7 +15,7 @@ OpenClassRooms project : Développez une architecture back-end sécurisée en ut
 - __Pré-requis : [Python](https://www.python.org/) doit être installé sur votre système__
 
 
-Tout d'abord, [téléchargez](https://github.com/A-Nourry/P9_LITReview/archive/refs/heads/main.zip) et décompressez le dossier du code avant de passer aux étapes suivantes.
+Tout d'abord, [téléchargez](https://github.com/A-Nourry/P12_Epic_Events/archive/refs/heads/main.zip) et décompressez le dossier du code avant de passer aux étapes suivantes.
 
 ## 1 . Environnement virtuel et Django
 
