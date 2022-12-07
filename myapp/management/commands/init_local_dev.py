@@ -3,8 +3,8 @@ from django.contrib.auth import get_user_model
 
 UserModel = get_user_model()
 
-ADMIN_ID = "admine"
-ADMIN_PASSWORD = "admine"
+ADMIN_ID = "admin"
+ADMIN_PASSWORD = "admin"
 
 
 class Command(BaseCommand):
