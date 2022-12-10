@@ -1,20 +1,10 @@
 from rest_framework.serializers import ModelSerializer, CharField
-from rest_framework.validators import ValidationError
 from .models import Employee
 
 
 class EmployeeSerializer(ModelSerializer):
 
     password = CharField(write_only=True)
-
-    def validate(self, attrs):
-
-        email_exists = Employee.objects.filter(email=attrs["email"]).exists()
-
-        if email_exists:
-            raise ValidationError("Cette adresse email est déjà utilisé !")
-
-        return super().validate(attrs)
 
     def create(self, validated_data):
 
