@@ -14,8 +14,8 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         self.stdout.write(self.style.MIGRATE_HEADING(self.help))
 
-        UserModel.objects.create_user(
-            ADMIN_ID, "PH", "admin", "PH", "PH", "PH", ADMIN_PASSWORD
+        UserModel.objects.create_superuser(
+            ADMIN_ID, "admin", "admin", "PH", "PH", "MANAGEMENT", ADMIN_PASSWORD
         )
 
         self.stdout.write(self.style.SUCCESS("All Done !"))
