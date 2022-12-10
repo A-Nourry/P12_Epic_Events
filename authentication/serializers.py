@@ -24,7 +24,6 @@ class EmployeeSerializer(ModelSerializer):
 
     class Meta:
         model = Employee
-        # Tuple of serialized model fields (see link [2])
         fields = [
             "id",
             "first_name",
