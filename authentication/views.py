@@ -10,6 +10,8 @@ class EmployeeViewset(ModelViewSet):
 
     serializer_class = EmployeeSerializer
     permission_classes = [IsAuthenticated & IsManager]
+    filterset_fields = ["last_name", "user_team"]
+    search_fields = ["last_name", "user_team"]
 
     def get_queryset(self):
         return Employee.objects.all()

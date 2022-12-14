@@ -10,10 +10,11 @@ from .serializers import ClientSerializer, ContractSerializer, EventSerializer
 class ClientViewset(ModelViewSet):
     serializer_class = ClientSerializer
     permission_classes = [IsAuthenticated & IsManager | IsSeller | IsSupport]
+    filterset_fields = ["last_name", "email"]
+    search_fields = ["last_name", "email"]
 
     def get_queryset(self):
         user = self.request.user
-        event = Event.objects.get(support_contact=user)
 
         if user.user_team == "MANAGEMENT":
             return Client.objects.all()
@@ -22,6 +23,7 @@ class ClientViewset(ModelViewSet):
             return Client.objects.filter(sales_contact=user)
 
         if user.user_team == "SUPPORT":
+            event = Event.objects.get(support_contact=user)
             return Client.objects.filter(id=event.client.id)
 
         raise PermissionDenied
@@ -30,6 +32,8 @@ class ClientViewset(ModelViewSet):
 class ContractViewset(ModelViewSet):
     serializer_class = ContractSerializer
     permission_classes = [IsAuthenticated & IsManager | IsSeller]
+    filterset_fields = ["date_created", "date_updated", "amount"]
+    search_fields = ["date_created", "date_updated", "amount"]
 
     def get_queryset(self):
         user = self.request.user
@@ -46,6 +50,8 @@ class ContractViewset(ModelViewSet):
 class EventViewset(ModelViewSet):
     serializer_class = EventSerializer
     permission_classes = [IsAuthenticated & IsManager | IsSeller | IsSupport]
+    filterset_fields = ["client_id__last_name", "client_id__email", "date_created"]
+    search_fields = ["client_id__last_name", "client_id__email", "date_created"]
 
     def get_queryset(self):
         user = self.request.user
